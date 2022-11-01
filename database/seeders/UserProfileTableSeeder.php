@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\UserProfile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,7 @@ class UserProfileTableSeeder extends Seeder
      */
     public function run()
     {
+        //hard coding a user profile
         $a = new UserProfile;
         $a->profile_name = "Fahd";
         $a->profile_image = "Image";
