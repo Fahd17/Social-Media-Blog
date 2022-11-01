@@ -15,7 +15,7 @@ class UserProfileTableSeeder extends Seeder
      */
     public function run()
     {
-        //hard coding a user profile
+        //hard coding a user profile for testing
         $a = new UserProfile;
         $a->profile_name = "Fahd";
         $a->profile_image = "Image";
