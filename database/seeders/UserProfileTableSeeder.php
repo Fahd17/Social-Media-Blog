@@ -20,5 +20,7 @@ class UserProfileTableSeeder extends Seeder
         $a->profile_name = "Fahd";
         $a->profile_image = "Image";
         $a->save();
+
+        UserProfile::factory()->count(10)->create();
     }
 }
