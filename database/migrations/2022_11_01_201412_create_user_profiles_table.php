@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string("profile_name");
+            $table->string("profile_image")->nullable();
             $table->timestamps();
         });
     }
