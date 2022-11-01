@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("profile_name");
             $table->string("profile_image")->nullable();
+            $table->dateTime("date_of_birth")->nullable();
             $table->timestamps();
         });
     }
