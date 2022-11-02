@@ -17,7 +17,7 @@ class UserProfileFactory extends Factory
     public function definition()
     {
         return [
-            "profile_name" => fake()->unique()->name(),
+            "profile_name" => fake()->unique()->userName(),
             "profile_image" => fake()->name(),
             "date_of_birth" => fake()->dateTimeBetween($startDate = '-30 years', $endDate = '-15 years', $timezone = null)
         ];
