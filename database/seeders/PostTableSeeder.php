@@ -19,5 +19,7 @@ class PostTableSeeder extends Seeder
         $p->image = "image";
         $p->caption = "My pic";
         $p->save();
+
+        Post::factory()->count(10)->create();
     }
 }
