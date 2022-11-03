@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("profile_name");
             $table->string("profile_image")->nullable();
             $table->date("date_of_birth")->nullable();
+            $table->string("bio")->nullable();
             $table->bigInteger("user_id")->unsigned();
             $table->timestamps();
 

@@ -19,7 +19,8 @@ class UserProfileFactory extends Factory
         return [
             "profile_name" => fake()->unique()->userName(),
             "profile_image" => fake()->name(),
-            "date_of_birth" => fake()->dateTimeBetween($startDate = '-45 years', $endDate = '-15 years', $timezone = null)
+            "date_of_birth" => fake()->dateTimeBetween($startDate = '-45 years', $endDate = '-15 years', $timezone = null),
+            "bio" => fake()->realText($maxNbChars = 50, $indexSize = 2),
         ];
     }
 }

@@ -18,7 +18,7 @@ class PostFactory extends Factory
     {
         return [
             "image" => fake()->name(),
-            "caption" => fake()->name(),
+            "caption" => fake()->realText($maxNbChars = 20, $indexSize = 2),
         ];
     }
 }
