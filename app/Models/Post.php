@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    public function userProfile()
+    {
+        return $this->belongsTo(Enclosure::class);
+    }
 }

@@ -17,7 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string("image");
             $table->string("caption");
+            $table->bigInteger("author_id")->unsigned();
             $table->timestamps();
+
+            $table->foreign("author_id")->references("id")->on("user_profiles")
+                ->onDelete("cascade")->onUpdate("cascade");
+
         });
     }
 
