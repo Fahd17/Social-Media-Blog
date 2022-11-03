@@ -18,7 +18,7 @@ class PostTableSeeder extends Seeder
         $p = new Post;
         $p->image = "image";
         $p->caption = "My pic";
-        $p->author_id = 1;
+        $p->user_profile_id = 1;
         $p->save();
 
         //Post::factory()->count(10)->create();
