@@ -20,8 +20,9 @@ class UserProfileTableSeeder extends Seeder
         $a->profile_name = "Fahd";
         $a->profile_image = "Image";
         $a->date_of_birth = "2002-11-22";
+        $a->user_id = 1;
         $a->save();
 
-        UserProfile::factory()->count(10)->create();
+        
     }
 }

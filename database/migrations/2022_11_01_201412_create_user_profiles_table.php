@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string("profile_name");
             $table->string("profile_image")->nullable();
             $table->date("date_of_birth")->nullable();
+            $table->bigInteger("user_id")->unsigned();
             $table->timestamps();
+
+            $table->foreign("user_id")->references("id")->on("users")
+                ->onDelete("cascade")->onUpdate("cascade");
         });
     }
 

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +23,7 @@ class UserTableSeeder extends Seeder
         $u->password = "pass1";
         $u->save();
 
-        User::factory()->count(10)->create();
+        User::factory()->has(UserProfile::factory()->count(1))->count(10)->create();
 
     }
 }
