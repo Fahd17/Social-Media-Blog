@@ -11,6 +11,11 @@ class Post extends Model
 
     public function userProfile()
     {
-        return $this->belongsTo(Enclosure::class);
+        return $this->belongsTo(UserProfile::class);
     }
+
+    public function comments()
+   {
+        return $this->hasMany(Comment::class);
+   }
 }
