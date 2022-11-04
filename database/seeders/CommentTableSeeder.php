@@ -17,6 +17,8 @@ class CommentTableSeeder extends Seeder
     {
         $c = new Comment;
         $c->comment_text = "Nice post bro";
+        $c->user_profile_id = 1;
+        $c->post_id = 1;
         $c->save();
     }
 }
