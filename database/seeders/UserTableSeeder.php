@@ -32,7 +32,5 @@ class UserTableSeeder extends Seeder
                 ->count(1))->count(10)
                 ->create();
 
-
-
     }
 }

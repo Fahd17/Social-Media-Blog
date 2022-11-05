@@ -23,6 +23,5 @@ class UserProfileTableSeeder extends Seeder
         $a->user_id = 1;
         $a->save();
 
-        //UserProfile::factory()->count(10)->create();
     }
 }
