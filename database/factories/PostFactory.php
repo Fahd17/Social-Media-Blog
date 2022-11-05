@@ -17,7 +17,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            "image" => fake()->imageUrl(width: 620, height: 480),,
+            "image" => fake()->imageUrl(width: 620, height: 480),
             "caption" => fake()->realText($maxNbChars = 20, $indexSize = 2),
         ];
     }
