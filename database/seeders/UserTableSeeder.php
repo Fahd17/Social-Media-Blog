@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //hard coding a user for testing
         $u = new User;
         $u->name = "Fahd";
         $u->email = "fahdsattam8@gmail.com";
@@ -29,7 +29,8 @@ class UserTableSeeder extends Seeder
             UserProfile::factory()->has(
                 Post::factory()->has(Comment::factory()->count(3))
                 ->count(3))
-                ->count(1))->count(10)
+                ->count(1))
+                ->count(10)
                 ->create();
 
     }

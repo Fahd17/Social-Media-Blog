@@ -15,6 +15,7 @@ class CommentTableSeeder extends Seeder
      */
     public function run()
     {
+        //hard coding a comment for testing
         $c = new Comment;
         $c->comment_text = "Nice post bro";
         $c->user_profile_id = 1;

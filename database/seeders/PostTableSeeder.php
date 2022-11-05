@@ -15,6 +15,7 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
+        //hard coding a post for testing
         $p = new Post;
         $p->image = "image";
         $p->caption = "My pic";
