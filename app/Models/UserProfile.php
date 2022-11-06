@@ -23,5 +23,10 @@ class UserProfile extends Model
    {
         return $this->hasMany(Comment::class);
    }
+
+   public function postsThatBeenCommented()
+   {
+        return $this->hasManyThrough(Post::class, Comment::class);
+   }
     
 }
