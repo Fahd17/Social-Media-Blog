@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     use HasFactory;
+    
+    public function userProfile()
+    {
+        return $this->belongsTo(UserProfile::class);
+    }
+
+    public function likeable()
+    {
+        return $this->morphTo();
+    }
 }

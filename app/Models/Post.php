@@ -23,4 +23,10 @@ class Post extends Model
    {
         return $this->hasManyThrough(UserProfile::class, Comment::class);
    }
+
+   public function likes()
+    {
+        return $this->morphMany('App\Like', 'likeable');
+    }
+
 }
