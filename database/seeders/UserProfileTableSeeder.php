@@ -22,6 +22,8 @@ class UserProfileTableSeeder extends Seeder
         $a->date_of_birth = "2002-11-22";
         $a->user_id = 1;
         $a->save();
+        $a->viewedPosts()->attach(1);
+        $a->viewedPosts()->attach(11);
 
     }
 }
