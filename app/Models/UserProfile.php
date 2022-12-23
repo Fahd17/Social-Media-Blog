@@ -24,9 +24,20 @@ class UserProfile extends Model
         return $this->hasMany(Comment::class);
    }
 
+   public function likes()
+   {
+        return $this->hasMany(Like::class);
+   }
+
    public function postsThatBeenCommented()
    {
         return $this->hasManyThrough(Post::class, Comment::class);
+   }
+
+   public function viewedPosts()
+   {
+
+       return $this->belongsToMany(Post::class);
    }
     
 }

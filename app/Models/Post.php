@@ -29,4 +29,9 @@ class Post extends Model
         return $this->morphMany('App\Like', 'likeable');
     }
 
+    public function userProfilesViewedThis()
+    {
+
+        return $this->belongsToMany(UserProfile::class);
+    }
 }
