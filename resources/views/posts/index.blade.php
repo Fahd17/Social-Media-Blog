@@ -4,8 +4,19 @@
 
 @section("content")
 
-    <ul>
-        <li>Post</li>
-    </ul>
-
+   
+        @foreach ($posts as $post)
+         
+                <div>
+                    <header> 
+                        {{$post->user_profile_id}}
+                    </header>
+                    <img src = {{$post->image}}>
+                    <p>
+                        {{$post->caption}}
+                </div>
+            
+        @endforeach
+   
+   
 @endSection
