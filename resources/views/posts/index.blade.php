@@ -9,11 +9,12 @@
          
                 <div>
                     <header> 
-                        {{$post->user_profile_id}}
+                        {{$profiles[$post->user_profile_id]->profile_name}}
                     </header>
                     <img src = {{$post->image}}>
                     <p>
                         {{$post->caption}}
+                
                 </div>
             
         @endforeach
