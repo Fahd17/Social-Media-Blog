@@ -17,8 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::get();
-        $profiles = UserProfile::get();
-        return view("posts.index", ["posts" => $posts, "profiles" => $profiles]);
+        return view("posts.index", ["posts" => $posts]);
     }
 
     /**
@@ -51,10 +50,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        $profiles = UserProfile::get();
         $comments = Comment::where("post_id", $id)->get();
-        return view("posts.show", ["post" => $post, "profiles" => $profiles,
-                  "comments" => $comments]);
+        return view("posts.show", ["post" => $post,"comments" => $comments]);
     }
 
     /**
