@@ -22,5 +22,17 @@
     </style>
 <body> 
     <h1> Fistgram - @yield("title")</h1>
-    @yield("content")
+    @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        @yield("content")
+                    @else
+                        <a href="{{ route('login') }}">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
 </html>
