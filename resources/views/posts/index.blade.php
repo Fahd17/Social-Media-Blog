@@ -9,10 +9,10 @@
          
                 <div>
                         <header> 
-                                <img class="avatar" src = {{$profiles->where('id',$post->user_profile_id)->first()->profile_image}} 
-                                alt="Avatar" style="width:50px">
-                                
-                                {{$profiles->where('id',$post->user_profile_id)->first()->profile_name}}
+
+                                <img class="avatar" src = {{$post->userProfile->profile_image}} alt="Avatar">
+                                <p class="user_name">
+                                        {{$post->userProfile->profile_name}}
                         </header>
                         <body>
                             <img src = {{$post->image}}>

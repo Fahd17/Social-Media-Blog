@@ -5,10 +5,10 @@
 @section("content")
     <div>
         <header> 
-            <img class="avatar" src = {{$profiles->where('id',$post->user_profile_id)->first()->profile_image}} 
-            alt="Avatar" style="width:50px">
-            
-            {{$profiles->where('id',$post->user_profile_id)->first()->profile_name}}
+
+            <img class="avatar" src = {{$post->userProfile->profile_image}} alt="Avatar">
+            <p class="user_name">
+                    {{$post->userProfile->profile_name}}
         </header>
         <body>
             <img src = {{$post->image}}>
@@ -17,7 +17,15 @@
        
             @foreach ($comments as $comment)
             <div>
-                {{$comment->comment_text}}
+                <header> 
+
+                    <img class="avatar" src = {{$comment->userProfile->profile_image}} alt="Avatar">
+                    <p class="user_name">
+                            {{$comment->userProfile->profile_name}}
+                </header>
+                <body>
+                    {{$comment->comment_text}}
+                </body>
             </div>
             @endforeach
         </body>   
