@@ -8,6 +8,9 @@
       border-radius: 8px;
       padding: 5px;
     }
+    img.avatar {
+        border-radius: 50%;
+    }
     </style>
 <body> 
     <h1> Fistgram - @yield("title")</h1>
