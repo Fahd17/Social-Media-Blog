@@ -11,7 +11,7 @@
                     {{$post->userProfile->profile_name}}
         </header>
         <body>
-            <img src = {{$post->image}}>
+            <img class="post" src = {{$post->image}}>
             <p>
                 {{$post->caption}}
        

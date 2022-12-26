@@ -8,12 +8,17 @@
       border-radius: 8px;
       padding: 5px;
     }
+    img.post {
+        width: 620px;
+        height: 480px;
+    }
     img.avatar {
         border-radius: 50%;
         float: left;
         padding: 5px 10px 5px 10px;
         width:80px
     }
+
     p.user_name {
         padding: 5px 10px 5px 10px;
         font-size: 30px;
@@ -34,6 +39,9 @@
                         @endforeach
                      </ul>
                 </div>
+            @endif
+            @if (session("message"))
+                <p><b> {{session("message") }} </b></p>
             @endif
             @yield("content")
      @else

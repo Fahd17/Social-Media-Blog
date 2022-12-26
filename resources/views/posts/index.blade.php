@@ -14,7 +14,8 @@
                                         {{$post->userProfile->profile_name}}
                         </header>
                         <body>
-                                <a href= "{{route("posts.show", ["id" => $post->id])}}"><img src = {{$post->image}}></a>
+                                <a href= "{{route("posts.show", ["id" => $post->id])}}"><img 
+                                        class="post" src = {{$post->image}}></a>
                                  <p>
                                         {{$post->caption}}
                 
