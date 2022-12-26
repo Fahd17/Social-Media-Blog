@@ -106,6 +106,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        if(UserProfile::where("user_id", auth()->user()->id)
+           ->first()->id==$post->user_profile_id){
+            
+            $post->delete();
+        }else{
+            session()->flash("message", "You are not authroized to delete this post!");
+        }
+        return redirect()->route("posts.index");
+
     }
 }

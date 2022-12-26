@@ -26,6 +26,9 @@ Route::post('/posts/store', [PostController::class, "store"])
 Route::get('/posts/{id}', [PostController::class, "show"])
 ->middleware(['auth', 'verified'])->name("posts.show");
 
+Route::get('/posts/destroy/{id}', [PostController::class, "destroy"])
+->middleware(['auth', 'verified'])->name("posts.destroy");
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
