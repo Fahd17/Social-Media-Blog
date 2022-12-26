@@ -8,8 +8,7 @@
         @foreach ($posts as $post)
          
                 <div>
-                        <header> 
-
+                        <header>   
                                 <img class="avatar" src = {{$post->userProfile->profile_image}} alt="Avatar">
                                 <p class="user_name">
                                         {{$post->userProfile->profile_name}}

@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("posts.create");
     }
 
     /**
@@ -38,7 +38,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            "caption" => "required|min:5"
+        ]);
+
+        if($request->hasFile("image")) {
+            $destination_path = "public/images/posts";
+            $image = $request->file("image");
+            //naming the image according to user id, date and time
+            $image_name = auth()->user()->id. date("Y-m-d") .date("h:i:sa");
+            $path = $request->file("image")->storeAs( $destination_path,$image_name);
+        }
+
+        $p = new Post;
+        $p->caption = $validatedData["caption"];
+        $p->image = "/storage/images/posts/".$image_name;
+        $p->user_profile_id = UserProfile::where("user_id", auth()->user()->id)
+        ->first()->id;
+        $p->save();
+
+        session()->flash("message", "post was created.");
+
+        return redirect()->route("posts.index");
     }
 
     /**
