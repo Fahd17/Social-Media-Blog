@@ -1,6 +1,6 @@
 @extends("layouts.basic")
 
-@section("title", "Create a post!")
+@section("title", "Edit a post!")
 
 @section("content")
 
