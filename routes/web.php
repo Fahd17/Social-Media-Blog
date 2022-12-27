@@ -23,6 +23,12 @@ Route::get('/posts/create', [PostController::class, "create"])
 Route::post('/posts/store', [PostController::class, "store"])
 ->middleware(['auth', 'verified'])->name("posts.store");
 
+Route::get('/posts/edit/{id}', [PostController::class, "edit"])
+     ->name('posts.edit');
+
+Route::post('/posts/update/{id}', [PostController::class, "update"])
+->middleware(['auth', 'verified'])->name("posts.update");
+
 Route::get('/posts/{id}', [PostController::class, "show"])
 ->middleware(['auth', 'verified'])->name("posts.show");
 
