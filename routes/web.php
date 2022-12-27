@@ -33,7 +33,7 @@ Route::post('/posts/update/{id}', [PostController::class, "update"])
 Route::get('/posts/{id}', [PostController::class, "show"])
 ->middleware(['auth', 'verified'])->name("posts.show");
 
-Route::get('/posts/destroy/{id}', [PostController::class, "destroy"])
+Route::delete('/posts/{id}', [PostController::class, "destroy"])
 ->middleware(['auth', 'verified'])->name("posts.destroy");
 
 Route::get('/comments/create/{postId}', [CommentController::class, "create"])
@@ -48,7 +48,7 @@ Route::get('/comments/edit/{id}', [CommentController::class, "edit"])
 Route::post('/comments/update/{id}', [CommentController::class, "update"])
 ->middleware(['auth', 'verified'])->name("comments.update");
 
-Route::get('/comments/destroy/{id}', [CommentController::class, "destroy"])
+Route::delete('/comments/{id}', [CommentController::class, "destroy"])
 ->middleware(['auth', 'verified'])->name("comments.destroy");
 
 Route::get('/dashboard', function () {

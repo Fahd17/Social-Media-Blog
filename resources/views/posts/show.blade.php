@@ -19,9 +19,12 @@
                     <a href= "{{route("posts.edit", ["id" => $post->id])}}">
                         <button>Edit caption</button>
                     </a>
-                    <a href= "{{route("posts.destroy", ["id" => $post->id])}}">
-                        <button>Delete post</button>
-                    </a>
+                    <form method="POST" action= "{{route("posts.destroy", ["id" => $post->id])}}">
+                        @csrf
+                        @method("DELETE")
+
+                        <button type="submit">Delete post</button>
+                    </form>
                 @endif
                 <a href= "{{route("comments.create", ["postId" => $post->id])}}">
                     <button>Add comment</button>
@@ -46,9 +49,12 @@
                         @endif      
                         @if($post->UserProfile->user_id == auth()->user()->id ||
                             $comment->userProfile->user_id == auth()->user()->id)
-                            <a href= "{{route("comments.destroy", ["id" => $comment->id])}}">
-                                <button>Delete comment</button>
-                            </a>   
+                            <form method="POST" action= "{{route("comments.destroy", ["id" => $comment->id])}}">
+                                @csrf
+                                @method("DELETE")
+        
+                                <button type="submit">Delete comment</button>
+                            </form> 
                         @endif
                     </div>
                 </body>
