@@ -72,7 +72,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $comments = Comment::where("post_id", $id)->get();
-        return view("posts.show", ["post" => $post,"comments" => $comments]);
+        return view("posts.show", ["post" => $post,"comments" => $comments->reverse()]);
     }
 
     /**
