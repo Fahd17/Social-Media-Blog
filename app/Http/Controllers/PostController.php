@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::get();
-        return view("posts.index", ["posts" => $posts]);
+        return view("posts.index", ["posts" => $posts->reverse()]);
     }
 
     /**
@@ -83,7 +83,15 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        if(UserProfile::where("user_id", auth()->user()->id)
+           ->first()->id==$post->user_profile_id){
+
+            return view("posts.edit", ["post" => $post]);
+        }else{
+            session()->flash("message", "You are not authroized to update this item!");
+            return redirect()->route("posts.show", ["id" => $post->id]);
+        }
     }
 
     /**
@@ -95,7 +103,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $validatedData = $request->validate([
+            "caption" => "required|min:5"
+        ]);
+
+        $post->update(["caption" => $validatedData["caption"]]);
+
+        session()->flash("message", "Caption was updated.");
+
+        return redirect()->route("posts.show", ["id" => $post->id]);
     }
 
     /**
@@ -109,7 +126,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         if(UserProfile::where("user_id", auth()->user()->id)
            ->first()->id==$post->user_profile_id){
-            
+
             $post->delete();
         }else{
             session()->flash("message", "You are not authroized to delete this post!");
