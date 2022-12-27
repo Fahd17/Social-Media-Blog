@@ -16,7 +16,7 @@
                         <body>
                                 <a href= "{{route("posts.show", ["id" => $post->id])}}"><img 
                                         class="post" src = {{$post->image}}></a>
-                                 <p>
+                                <p>
                                         {{$post->caption}}
                 
                 </div>

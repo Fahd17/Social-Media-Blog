@@ -14,6 +14,15 @@
             <img class="post" src = {{$post->image}}>
             <p>
                 {{$post->caption}}
+            <div>
+                @if ($post->userProfile->user_id == auth()->user()->id)
+                    <a href= "{{route("posts.edit", ["id" => $post->id])}}">
+                        <button>Edit caption</button>
+                    </a>
+                    <a href= "{{route("posts.destroy", ["id" => $post->id])}}">
+                        <button>Delete post</button>
+                    </a>
+                @endif
        
             @foreach ($comments as $comment)
             <div>
