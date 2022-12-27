@@ -23,6 +23,10 @@
                         <button>Delete post</button>
                     </a>
                 @endif
+                <a href= "{{route("comments.create", ["postId" => $post->id])}}">
+                    <button>Add comment</button>
+                </a>
+            </div>
        
             @foreach ($comments as $comment)
             <div>
@@ -34,11 +38,22 @@
                 </header>
                 <body>
                     {{$comment->comment_text}}
+                    <div>
+                        @if($comment->userProfile->user_id == auth()->user()->id)
+                            <a href= "{{route("comments.edit", ["id" => $comment->id])}}">
+                                <button>Edit comment</button>
+                            </a>
+                        @endif      
+                        @if($post->UserProfile->user_id == auth()->user()->id ||
+                            $comment->userProfile->user_id == auth()->user()->id)
+                            <a href= "{{route("comments.destroy", ["id" => $comment->id])}}">
+                                <button>Delete comment</button>
+                            </a>   
+                        @endif
+                    </div>
                 </body>
             </div>
             @endforeach
         </body>   
     </div>
-
-
 @endSection

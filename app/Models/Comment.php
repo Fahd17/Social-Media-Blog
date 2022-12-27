@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $fillable = ['comment_text'];
     use HasFactory;
 
     public function userProfile()

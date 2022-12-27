@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +19,13 @@ Route::get('/posts', [PostController::class, "index"])
      ->middleware(['auth', 'verified'])->name('posts.index');
 
 Route::get('/posts/create', [PostController::class, "create"])
-     ->name('posts.create');
+     ->middleware(['auth', 'verified'])->name('posts.create');
 
 Route::post('/posts/store', [PostController::class, "store"])
 ->middleware(['auth', 'verified'])->name("posts.store");
 
 Route::get('/posts/edit/{id}', [PostController::class, "edit"])
-     ->name('posts.edit');
+->middleware(['auth', 'verified'])->name('posts.edit');
 
 Route::post('/posts/update/{id}', [PostController::class, "update"])
 ->middleware(['auth', 'verified'])->name("posts.update");
@@ -34,6 +35,21 @@ Route::get('/posts/{id}', [PostController::class, "show"])
 
 Route::get('/posts/destroy/{id}', [PostController::class, "destroy"])
 ->middleware(['auth', 'verified'])->name("posts.destroy");
+
+Route::get('/comments/create/{postId}', [CommentController::class, "create"])
+     ->middleware(['auth', 'verified'])->name('comments.create');
+
+Route::post('/comments/store/{postId}', [CommentController::class, "store"])
+->middleware(['auth', 'verified'])->name("comments.store");
+
+Route::get('/comments/edit/{id}', [CommentController::class, "edit"])
+->middleware(['auth', 'verified'])->name('comments.edit');
+
+Route::post('/comments/update/{id}', [CommentController::class, "update"])
+->middleware(['auth', 'verified'])->name("comments.update");
+
+Route::get('/comments/destroy/{id}', [CommentController::class, "destroy"])
+->middleware(['auth', 'verified'])->name("comments.destroy");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
