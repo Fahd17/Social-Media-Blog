@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 
@@ -14,6 +15,11 @@ use App\Http\Controllers\CommentController;
 | contains the "web" middleware gro;;vlassup. Now create something great!
 |
 */
+Route::get('/user_profiles', [UserProfileController::class, "index"])
+     ->middleware(['auth', 'verified'])->name('user_profiles.index');
+
+Route::get('/user_profiles/{id}', [UserProfileController::class, "show"])
+     ->middleware(['auth', 'verified'])->name("user_profiles.show");
 
 Route::get('/posts', [PostController::class, "index"])
      ->middleware(['auth', 'verified'])->name('posts.index');
