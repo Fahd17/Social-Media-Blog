@@ -5,8 +5,9 @@
 @section("content")
     <div>
         <header> 
-
-            <img class="avatar" src = {{$post->userProfile->profile_image}} alt="Avatar">
+            <a href= "{{route("user_profiles.show", ["id" => $post->userProfile->id])}}">
+                <img class="avatar" src = {{$post->userProfile->profile_image}} alt="Avatar">
+            </a>
             <p class="user_name">
                     {{$post->userProfile->profile_name}}
         </header>

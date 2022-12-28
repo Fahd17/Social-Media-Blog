@@ -21,8 +21,9 @@
     </h2>
     @foreach ($posts as $post)
         <div>
-            <a href= "{{route("posts.show", ["id" => $post->id])}}"><img 
-            class="post" src = {{$post->image}}></a>
+            <a href= "{{route("posts.show", ["id" => $post->id])}}">
+                <img class="post" src = {{$post->image}}>
+            </a>
             <p>
                 {{$post->caption}}
         </div>

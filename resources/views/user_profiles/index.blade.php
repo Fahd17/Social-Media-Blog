@@ -9,8 +9,10 @@
         @foreach ($userProfiles as $userProfile)
          
                 <div>
-                    <header>   
-                        <img class="avatar" src = {{$userProfile->profile_image}} alt="Avatar">
+                    <header>
+                        <a href= "{{route("user_profiles.show", ["id" => $userProfile->id])}}">   
+                            <img class="avatar" src = {{$userProfile->profile_image}} alt="Avatar">
+                        </a>
                         <p class="user_name">
                             {{$userProfile->profile_name}}
                                 

@@ -7,7 +7,9 @@
     @foreach ($comments as $comment)
         <div>
             <header>
-                <img class="avatar" src = {{$comment->userProfile->profile_image}} alt="Avatar">
+                <a href= "{{route("user_profiles.show", ["id" => $comment->userProfile->id])}}">
+                    <img class="avatar" src = {{$comment->userProfile->profile_image}} alt="Avatar">
+                </a>
                 <p class="user_name">
                         {{$comment->userProfile->profile_name}}
             </header>
