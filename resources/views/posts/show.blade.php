@@ -15,6 +15,8 @@
             <p>
                 {{$post->caption}}
             <div>
+                @livewire('like-button', ["likeableId" => $post->id, "likeableType" => get_class($post)])
+                
                 @if ($post->userProfile->user_id == auth()->user()->id)
                     <a href= "{{route("posts.edit", ["id" => $post->id])}}">
                         <button>Edit caption</button>
@@ -42,6 +44,7 @@
                 <body>
                     {{$comment->comment_text}}
                     <div>
+                        @livewire('like-button', ["likeableId" => $comment->id, "likeableType" => get_class($comment)])
                         @if($comment->userProfile->user_id == auth()->user()->id)
                             <a href= "{{route("comments.edit", ["id" => $comment->id])}}">
                                 <button>Edit comment</button>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title> Fistgram - @yield("title")</title>
+    @livewireStyles
 </head>
 <style>
     div {
@@ -26,6 +27,7 @@
     
     </style>
 <body> 
+    @livewireScripts
     <h1> Fistgram - @yield("title")</h1>
     @if (Route::has('login'))
         <div>
