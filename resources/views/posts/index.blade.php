@@ -4,6 +4,7 @@
 
 @section("content")
 
+<div>
    
         @foreach ($posts as $post)
          
@@ -12,6 +13,7 @@
                                 <img class="avatar" src = {{$post->userProfile->profile_image}} alt="Avatar">
                                 <p class="user_name">
                                         {{$post->userProfile->profile_name}}
+                                
                         </header>
                         <body>
                                 <a href= "{{route("posts.show", ["id" => $post->id])}}"><img 
@@ -22,6 +24,9 @@
                 </div>
             
         @endforeach
+        {{$posts->links('vendor.pagination.semantic-ui')}}
+
+</div>
    
    
 @endSection

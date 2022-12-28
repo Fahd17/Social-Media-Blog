@@ -6,6 +6,7 @@ use App\Models\UserProfile;
 use App\Models\Comment;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -16,8 +17,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
-        return view("posts.index", ["posts" => $posts->reverse()]);
+        $posts = Post::paginate(5);
+        
+        return view("posts.index", ["posts" => $posts]);
+
+        
     }
 
     /**
