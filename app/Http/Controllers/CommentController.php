@@ -44,7 +44,7 @@ class CommentController extends Controller
         ]);
 
         $c = new Comment;
-        $c->comment_text = $validatedData["comment"];;
+        $c->comment_text = $validatedData["comment"];
         $c->user_profile_id = UserProfile::where("user_id", 
         auth()->user()->id)->first()->id;
         $c->post_id = $postId;
