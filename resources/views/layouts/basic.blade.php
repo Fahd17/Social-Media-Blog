@@ -17,7 +17,8 @@
         border-radius: 50%;
         float: left;
         padding: 5px 10px 5px 10px;
-        width:80px
+        width:80px;
+        height: 80px;
     }
 
     p.user_name {
