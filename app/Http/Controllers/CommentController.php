@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\UserProfile;
 use App\Models\Comment;
+use App\Models\Like;
 
 class CommentController extends Controller
 {
@@ -119,6 +120,30 @@ class CommentController extends Controller
             $comment->delete();
         }else{
             session()->flash("message", "You are not authroized to delete this comment!");
+        }
+        return redirect()->route("posts.show", $comment->Post->id);
+    }
+
+    /**
+     * Likes the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function like($id)
+    {
+        $comment = Comment::findOrFail($id);
+        if(!Like::where("likeable_id", $id)->where("user_profile_id",
+            auth()->user()->UserProfile->id)->exists()){
+                
+            $like = new Like;
+            $like -> user_profile_id = auth()->user()->UserProfile->id;
+            $like -> likeable_id = $id;
+            $like -> likeable_type = "App\Models\Comment";
+            $like -> save();
+
+        }else{
+            session()->flash("message", "You already liked this comment!");
         }
         return redirect()->route("posts.show", $comment->Post->id);
     }

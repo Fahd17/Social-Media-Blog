@@ -57,6 +57,10 @@ Route::post('/comments/update/{id}', [CommentController::class, "update"])
 Route::delete('/comments/{id}', [CommentController::class, "destroy"])
 ->middleware(['auth', 'verified'])->name("comments.destroy");
 
+Route::get('/comments/like/{id}', [CommentController::class, "like"])
+->middleware(['auth', 'verified'])->name("comments.like");
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

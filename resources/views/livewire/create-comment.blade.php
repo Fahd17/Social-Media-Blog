@@ -17,6 +17,14 @@
                 <p>
                     {{$comment->comment_text}}
                 <p>
+                    <a href= "{{route("comments.like", ["id" => $comment->id])}}">
+                        <button>Like</button>
+                    </a>
+                <h2>
+                    Likes: {{$commentsLike->where('likeable_type', "App\Models\Comment")
+                        ->where("likeable_id", $comment->id)->count()}}
+                </h2>                    
+                <p>
                     @if($comment->userProfile->user_id == auth()->user()->id)
                         <a href= "{{route("comments.edit", ["id" => $comment->id])}}">
                             <button>Edit comment</button>
@@ -30,7 +38,7 @@
                     <button type="submit">Delete comment</button>
                     </form> 
                 @endif
-                
+            </body>          
         </div>
     @endforeach
 </div>

@@ -4,11 +4,13 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Comment;
+use App\Models\Like;
 
 class CreateComment extends Component
 {
     public $postId;
     public $comment;
+    public $commentId;
 
     
 
@@ -29,6 +31,8 @@ class CreateComment extends Component
     public function render()
     {
         $comments = Comment::where("post_id", $this->postId)->get();
-        return view('livewire.create-comment', [ "comments" => $comments->reverse()]);
+        $commentslikes = Like::get();
+        return view('livewire.create-comment', [ "comments" => $comments->reverse(),
+         "commentsLike" => $commentslikes]);
     }
 }
