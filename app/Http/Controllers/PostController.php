@@ -76,7 +76,12 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $comments = Comment::where("post_id", $id)->get();
-        return view("posts.show", ["post" => $post,"comments" => $comments->reverse()]);
+        if(DB::table("post_user_profile")->where("post_id", $id)->where("user_profile_id", auth()->user()->id)->exists()){
+        UserProfile::where("user_id", auth()->user()->id)
+           ->first()->viewedPosts()->attach($id);
+        }
+        $views = DB::table("post_user_profile")->where("post_id", $id)->get();
+        return view("posts.show", ["post" => $post,"comments" => $comments->reverse(), "views" => $views]);
     }
 
     /**

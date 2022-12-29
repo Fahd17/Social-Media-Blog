@@ -15,8 +15,12 @@
             <img class="post" src = {{$post->image}}>
             <p>
                 {{$post->caption}}
+                
             <div>
                 @livewire('like-button', ["likeableId" => $post->id, "likeableType" => get_class($post)])
+                <h2>
+                    Views: {{$views->count()}}  
+                </h2>
                 
                 
                 @if ($post->userProfile->user_id == auth()->user()->id)
