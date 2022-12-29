@@ -10,7 +10,7 @@
         <input type="file" id="image" name="image">
         <p> Profile name: <input type="text" name="profile_name" value="{{$user_profile->profile_name}}"></p>
         <p> Bio: <input type="text" name="bio" value="{{$user_profile->bio}}"></p>
-        <input type="submit" value="Post" >
+        <input type="submit" value="Update" >
         <a href="{{ route("user_profiles.index")}}"> Cancel</a>
     </form>
 @endSection

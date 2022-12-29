@@ -80,8 +80,8 @@ class PostController extends Controller
         }else{
             $post = Post::findOrFail($id);
             $comments = Comment::where("post_id", $id)->get();
-            if(DB::table("post_user_profile")->where("post_id", $id)->where("user_profile_id",
-             auth()->user()->id)->exists()){
+            if(!DB::table("post_user_profile")->where("post_id", $id)->where("user_profile_id",
+            auth()->user()->UserProfile->id)->exists()){
                 UserProfile::where("user_id", auth()->user()->id)
                 ->first()->viewedPosts()->attach($id);
             }
