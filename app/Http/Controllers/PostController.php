@@ -74,14 +74,20 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-        $comments = Comment::where("post_id", $id)->get();
-        if(DB::table("post_user_profile")->where("post_id", $id)->where("user_profile_id", auth()->user()->id)->exists()){
-        UserProfile::where("user_id", auth()->user()->id)
-           ->first()->viewedPosts()->attach($id);
+        if(!UserProfile::where("user_id", auth()->user()->id)->exists()){
+
+            return redirect()->route('user_profiles.create');
+        }else{
+            $post = Post::findOrFail($id);
+            $comments = Comment::where("post_id", $id)->get();
+            if(DB::table("post_user_profile")->where("post_id", $id)->where("user_profile_id",
+             auth()->user()->id)->exists()){
+                UserProfile::where("user_id", auth()->user()->id)
+                ->first()->viewedPosts()->attach($id);
+            }
+            $views = DB::table("post_user_profile")->where("post_id", $id)->get();
+            return view("posts.show", ["post" => $post,"comments" => $comments->reverse(), "views" => $views]);
         }
-        $views = DB::table("post_user_profile")->where("post_id", $id)->get();
-        return view("posts.show", ["post" => $post,"comments" => $comments->reverse(), "views" => $views]);
     }
 
     /**
@@ -143,4 +149,6 @@ class PostController extends Controller
         return redirect()->route("posts.index");
 
     }
+
+    
 }
