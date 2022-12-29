@@ -1,5 +1,8 @@
 <div>
     <label>
+        <p>
+            @error("comment") {{$message}} @enderror
+        </p>
         <input wire:model="comment" type="text">
         <button wire:click="addComment({{ $postId}})" >Comment</button>
     </label>

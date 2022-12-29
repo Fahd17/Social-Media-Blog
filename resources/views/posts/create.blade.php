@@ -8,6 +8,9 @@
 
         @csrf
 
+        <p> 
+            Upload your post image:
+        </p>
         <input type="file" id="image" name="image">
         <p> Caption: <input type="text" name="caption" value="{{old("caption")}}"></p>
 

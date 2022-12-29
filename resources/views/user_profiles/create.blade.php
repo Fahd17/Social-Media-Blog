@@ -8,6 +8,9 @@
 
         @csrf
 
+        <p> 
+            Upload your profile avater:
+        </p>
         <input type="file" id="profile_image" name="profile_image">
         <p> Profile name: <input type="text" name="profile_name" value="{{old("profile_name")}}"></p>
         <p> Bio: <input type="text" name="bio" value="{{old("bio")}}"></p>

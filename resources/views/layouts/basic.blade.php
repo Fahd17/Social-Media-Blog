@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<nav>
+    <a href= "{{route("user_profiles.show", ["id" =>  auth()->user()->UserProfile->id])}}">
+        <button>My profile</button>
+    </a>
+    <a href= "{{route("posts.index")}}">
+        <button>Explorer</button>
+    </a>
+    <a href= "{{route("user_profiles.index")}}">
+        <button>Discover users</button>
+    </a>
+    <a href= "{{route("posts.create")}}">
+        <button>New post</button>
+    </a>
+</nav>
+
 <head>
     <title> Fistgram - @yield("title")</title>
     @livewireStyles
@@ -24,6 +39,22 @@
     p.user_name {
         padding: 5px 10px 5px 10px;
         font-size: 30px;
+    }
+    input {
+        background-color: white;
+        color: black;
+        border: 2px solid #000080;
+        padding: 15px 32px;
+    }
+    button {
+        background-color: #000080; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
     }
     
     </style>
