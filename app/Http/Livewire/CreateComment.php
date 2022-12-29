@@ -19,8 +19,13 @@ class CreateComment extends Component
     }
 
     public function addComment($postId){
+
+        $validatedData = $this->validate([
+            "comment" => "required|max:255"
+        ]);
+
         $c = new Comment;
-        $c->comment_text = $this->comment;
+        $c->comment_text = $validatedData["comment"];
         $c->user_profile_id = auth()->user()->UserProfile->id;
         $c->post_id = $postId;
         $c->save();
