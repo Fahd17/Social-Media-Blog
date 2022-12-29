@@ -23,6 +23,7 @@ class UserTableSeeder extends Seeder
         $u->name = "Fahd";
         $u->email = "fahdsattam8@gmail.com";
         $u->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $u->is_admin = true;
         $u->save();
 
         User::factory()->has(
