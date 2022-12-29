@@ -92,7 +92,15 @@ class UserProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user_profile = UserProfile::findOrFail($id);
+        if(UserProfile::where("user_id", auth()->user()->id)
+           ->first()->id==$id){
+
+            return view("user_profiles.edit", ["user_profile" => $user_profile]);
+        }else{
+            session()->flash("message", "You are not authroized to update this item!");
+            return redirect()->route("user_profiles.show", ["id" => $user_profile->id]);
+        }
     }
 
     /**
@@ -104,7 +112,26 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_profile = UserProfile::findOrFail($id);
+        $validatedData = $request->validate([
+            "profile_name" => "required|max:20|unique:user_profiles|regex:/(^[a-zA-Z]+[a-zA-Z0-9\\-]*$)/u",
+            "bio" => "required|max:255",
+        ]);
+        $image_name = auth()->user()->id. date("Y-m-d") .date("h:i:sa");
+        if($request->hasFile("image")) {
+            $destination_path = "public/images/posts";
+            $image = $request->file("image");
+            //naming the image according to user id, date and time
+            $path = $request->file("image")->storeAs( $destination_path,$image_name);
+        }
+
+        $user_profile->update(["profile_image" =>  "/storage/images/posts/".$image_name]);
+        $user_profile->update(["profile_name" => $validatedData["profile_name"]]);
+        $user_profile->update(["bio" => $validatedData["bio"]]);
+
+        session()->flash("message", "Profile was updated.");
+
+        return redirect()->route("user_profiles.show", ["id" => $user_profile->id]);
     }
 
     /**

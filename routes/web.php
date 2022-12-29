@@ -23,7 +23,12 @@ Route::get('/user_profiles/create', [UserProfileController::class, "create"])
      
 Route::post('/user_profiles/store', [UserProfileController::class, "store"])
      ->middleware(['auth', 'verified'])->name('user_profiles.store');   
-     
+
+Route::get('/user_profiles/edit/{id}', [UserProfileController::class, "edit"])
+     ->middleware(['auth', 'verified'])->name('user_profiles.edit');
+
+Route::post('/user_profiles/update/{id}', [UserProfileController::class, "update"])
+     ->middleware(['auth', 'verified'])->name("user_profiles.update");
 
 Route::get('/user_profiles/{id}', [UserProfileController::class, "show"])
      ->middleware(['auth', 'verified'])->name("user_profiles.show");
