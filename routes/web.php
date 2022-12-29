@@ -18,6 +18,13 @@ use App\Http\Controllers\CommentController;
 Route::get('/user_profiles', [UserProfileController::class, "index"])
      ->middleware(['auth', 'verified'])->name('user_profiles.index');
 
+Route::get('/user_profiles/create', [UserProfileController::class, "create"])
+     ->middleware(['auth', 'verified'])->name('user_profiles.create');
+     
+Route::post('/user_profiles/store', [UserProfileController::class, "store"])
+     ->middleware(['auth', 'verified'])->name('user_profiles.store');   
+     
+
 Route::get('/user_profiles/{id}', [UserProfileController::class, "show"])
      ->middleware(['auth', 'verified'])->name("user_profiles.show");
 
