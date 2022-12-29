@@ -13,7 +13,13 @@
         </header>
         <body>
             <p>
-                {{$userProfile->bio}}        
+                {{$userProfile->bio}}
+            <p> 
+                @if ($userProfile->user_id == auth()->user()->id)
+                    <a href= "{{route("user_profiles.edit", ["id" => $userProfile->id])}}">
+                        <button>Edit profile</button>
+                    </a>
+                @endif          
         </body>       
     </div>
     <h2>
