@@ -43,7 +43,7 @@ class UserProfileController extends Controller
         $validatedData = $request->validate([
             "profile_name" => "required|max:20|unique:user_profiles|regex:/(^[a-zA-Z]+[a-zA-Z0-9\\-]*$)/u",
             "bio" => "required|max:255",
-            "date_of_birth" => "after_or_equal:01/01/2005 ",
+            "date_of_birth" => "before_or_equal:01/01/2005 ",
 
         ]);
         
@@ -64,7 +64,7 @@ class UserProfileController extends Controller
         $a->user_id = auth()->user()->id;
         $a->save();
 
-        session()->flash("message", "post was created.");
+        session()->flash("message", "Profile was created.");
 
         return redirect()->route("user_profiles.index");
     }
@@ -123,9 +123,10 @@ class UserProfileController extends Controller
             $image = $request->file("image");
             //naming the image according to user id, date and time
             $path = $request->file("image")->storeAs( $destination_path,$image_name);
+            $user_profile->update(["profile_image" =>  "/storage/images/posts/".$image_name]);
         }
 
-        $user_profile->update(["profile_image" =>  "/storage/images/posts/".$image_name]);
+        
         $user_profile->update(["profile_name" => $validatedData["profile_name"]]);
         $user_profile->update(["bio" => $validatedData["bio"]]);
 
@@ -144,4 +145,5 @@ class UserProfileController extends Controller
     {
         //
     }
+    
 }
