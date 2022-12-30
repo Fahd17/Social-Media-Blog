@@ -21,19 +21,20 @@
                 <h2>
                     Views: {{$views->count()}}  
                 </h2>
+                @can('update_post', [ $post])
                 
-                
-                @if ($post->userProfile->user_id == auth()->user()->id)
                     <a href= "{{route("posts.edit", ["id" => $post->id])}}">
                         <button>Edit caption</button>
                     </a>
+                @endcan
+                @can('delete_post', [ $post])
                     <form method="POST" action= "{{route("posts.destroy", ["id" => $post->id])}}">
                         @csrf
                         @method("DELETE")
 
                         <button type="submit">Delete post</button>
                     </form>
-                @endif
+                @endcan
                 
             </div>
        

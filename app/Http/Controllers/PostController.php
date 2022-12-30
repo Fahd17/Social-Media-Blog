@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\UserProfile;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -99,8 +100,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        if(UserProfile::where("user_id", auth()->user()->id)
-           ->first()->id==$post->user_profile_id){
+        if((Gate::allows('update_post', [$post]))){
 
             return view("posts.edit", ["post" => $post]);
         }else{
@@ -137,10 +137,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
         $post = Post::findOrFail($id);
-        if(UserProfile::where("user_id", auth()->user()->id)
-           ->first()->id==$post->user_profile_id){
+
+       
+        if((Gate::allows('delete_post', [$post]))){
 
             $post->delete();
         }else{

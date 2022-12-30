@@ -28,19 +28,18 @@
                         ->where("likeable_id", $comment->id)->count()}}
                 </h2>                    
                 <p>
-                    @if($comment->userProfile->user_id == auth()->user()->id)
+                    @can('update_comment', [ $comment])
                         <a href= "{{route("comments.edit", ["id" => $comment->id])}}">
                             <button>Edit comment</button>
                         </a>
-                    @endif 
-                @if($comment->Post->UserProfile->user_id == auth()->user()->id ||
-                    $comment->userProfile->user_id == auth()->user()->id)
+                    @endcan 
+                @can('delete_comment', [ $comment])
                     <form method="POST" action= "{{route("comments.destroy", ["id" => $comment->id])}}">
                     @csrf
                     @method("DELETE")
                     <button type="submit">Delete comment</button>
                     </form> 
-                @endif
+                @endcan
             </body>          
         </div>
     @endforeach

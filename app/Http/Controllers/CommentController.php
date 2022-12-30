@@ -73,8 +73,7 @@ class CommentController extends Controller
     public function edit($id)
     {
         $comment = Comment::findOrFail($id);
-        if(UserProfile::where("user_id", auth()->user()->id)
-           ->first()->id == $comment->user_profile_id){
+        if((Gate::allows('update_comment', [$comment]))){
 
             return view("comments.edit", ["comment" => $comment]);
         }else{
@@ -114,8 +113,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
         $currentUserId = UserProfile::where("user_id", auth()->user()->id)->first()->id;
-        if($currentUserId == $comment->user_profile_id || 
-           $currentUserId == $comment->Post->UserProfile->id){
+        if((Gate::allows('delete_comment', [$comment]))){
 
             $comment->delete();
         }else{
