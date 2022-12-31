@@ -1,6 +1,6 @@
 @extends("layouts.basic")
 
-@section("title", "Explorer")
+@section("title", "Profile")
 
 @section("content")
 

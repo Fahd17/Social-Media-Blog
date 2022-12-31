@@ -162,8 +162,8 @@ class PostController extends Controller
     public function like($id)
     {
         $post = Post::findOrFail($id);
-        if(!Like::where("likeable_id", $id)->where("user_profile_id",
-            auth()->user()->UserProfile->id)->exists()){
+        if(!Like::where("likeable_id", $id)->where("likeable_type", "App\Models\Post")
+        ->where("user_profile_id",auth()->user()->UserProfile->id)->exists()){
                 
             $like = new Like;
             $like -> user_profile_id = auth()->user()->UserProfile->id;

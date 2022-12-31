@@ -130,8 +130,8 @@ class CommentController extends Controller
     public function like($id)
     {
         $comment = Comment::findOrFail($id);
-        if(!Like::where("likeable_id", $id)->where("user_profile_id",
-            auth()->user()->UserProfile->id)->exists()){
+        if(!Like::where("likeable_id", $id)->where("likeable_type", "App\Models\Comment")
+        ->where("user_profile_id",auth()->user()->UserProfile->id)->exists()){
                 
             $like = new Like;
             $like -> user_profile_id = auth()->user()->UserProfile->id;
