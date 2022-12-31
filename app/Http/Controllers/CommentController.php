@@ -138,10 +138,12 @@ class CommentController extends Controller
             $like -> likeable_id = $id;
             $like -> likeable_type = "App\Models\Comment";
             $like -> save();
+            return redirect()->route("send_like", ["likeableType" => 'AppModelsComment', "likeableId" => $id]);
 
         }else{
             session()->flash("message", "You already liked this comment!");
+            return redirect()->route("posts.show", $comment->Post->id);
         }
-        return redirect()->route("posts.show", $comment->Post->id);
+        
     }
 }

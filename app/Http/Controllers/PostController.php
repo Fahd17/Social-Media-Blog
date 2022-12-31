@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\UserProfile;
 use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
@@ -81,13 +82,15 @@ class PostController extends Controller
         }else{
             $post = Post::findOrFail($id);
             $comments = Comment::where("post_id", $id)->get();
+            $postsLike = Like::get();
             if(!DB::table("post_user_profile")->where("post_id", $id)->where("user_profile_id",
             auth()->user()->UserProfile->id)->exists()){
                 UserProfile::where("user_id", auth()->user()->id)
                 ->first()->viewedPosts()->attach($id);
             }
             $views = DB::table("post_user_profile")->where("post_id", $id)->get();
-            return view("posts.show", ["post" => $post,"comments" => $comments->reverse(), "views" => $views]);
+            return view("posts.show", ["post" => $post,"comments" => $comments->reverse(), "views" => $views,
+              "postsLike" => $postsLike]);
         }
     }
 
@@ -149,6 +152,31 @@ class PostController extends Controller
         }
         return redirect()->route("posts.index");
 
+    }
+
+    /**
+     * Likes the specified resource from storage.
+     *
+     * @param  int  $id
+     */
+    public function like($id)
+    {
+        $post = Post::findOrFail($id);
+        if(!Like::where("likeable_id", $id)->where("user_profile_id",
+            auth()->user()->UserProfile->id)->exists()){
+                
+            $like = new Like;
+            $like -> user_profile_id = auth()->user()->UserProfile->id;
+            $like -> likeable_id = $id;
+            $like -> likeable_type = "App\Models\Post";
+            $like -> save();
+            return redirect()->route("send_like", ["likeableType" => 'AppModelsPost', "likeableId" => $id]);
+
+        }else{
+            session()->flash("message", "You already liked this post!");
+            return redirect()->route("posts.show", $post->id);
+        }
+        
     }
 
     

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReceivedLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,11 @@ Route::delete('/comments/{id}', [CommentController::class, "destroy"])
 Route::get('/comments/like/{id}', [CommentController::class, "like"])
 ->middleware(['auth', 'verified'])->name("comments.like");
 
+Route::get('/posts/like/{id}', [PostController::class, "like"])
+->middleware(['auth', 'verified'])->name("posts.like");
+
+Route::get('/send-receivedlike/{likeableType}/{likeableId}', [ReceivedLikeController::class,
+ 'sendLikeNotification'])->middleware(['auth', 'verified'])->name("send_like");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

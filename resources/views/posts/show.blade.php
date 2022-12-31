@@ -17,7 +17,15 @@
                 {{$post->caption}}
                 
             <div>
-                @livewire('like-button', ["likeableId" => $post->id, "likeableType" => get_class($post)])
+                <p>
+                    <a href= "{{route("posts.like", ["id" => $post->id])}}">
+                        <button>Like</button>
+                    </a>
+                <h2>
+                    
+                    Likes: {{$postsLike->where('likeable_type', "App\Models\Post")
+                    ->where("likeable_id", $post->id)->count()}}
+                </h2>                    
                 <h2>
                     Views: {{$views->count()}}  
                 </h2>
