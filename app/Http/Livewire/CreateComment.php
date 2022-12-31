@@ -11,13 +11,9 @@ class CreateComment extends Component
     public $postId;
     public $comment;
     public $commentId;
-
-    
-
     public function mount($postId){
         $this->postId = $postId;
     }
-
     public function addComment($postId){
 
         $validatedData = $this->validate([
@@ -31,8 +27,6 @@ class CreateComment extends Component
         $c->save();
 
     }
-
-
     public function render()
     {
         $comments = Comment::where("post_id", $this->postId)->get();
