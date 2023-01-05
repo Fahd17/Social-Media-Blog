@@ -24,6 +24,9 @@
       border-radius: 8px;
       padding: 5px;
     }
+    p {
+        font-size: 25px;
+    }
     img.post {
         width: 620px;
         height: 480px;
@@ -38,7 +41,7 @@
 
     p.user_name {
         padding: 5px 10px 5px 10px;
-        font-size: 30px;
+        font-size: 40px;
     }
     input {
         background-color: white;
