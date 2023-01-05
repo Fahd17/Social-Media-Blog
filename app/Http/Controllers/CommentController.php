@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\UserProfile;
 use App\Models\Comment;
 use App\Models\Like;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
