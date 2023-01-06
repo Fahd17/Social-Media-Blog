@@ -41,7 +41,7 @@ class CommentController extends Controller
     public function store(Request $request, $postId)
     {
         $validatedData = $request->validate([
-            "comment" => "required|max:255"
+            "comment" => "required|max:255|min:5"
         ]);
 
         $c = new Comment;
@@ -94,7 +94,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
         $validatedData = $request->validate([
-            "comment" => "required|max:255"
+            "comment" => "required|max:255|min:5"
         ]);
 
         $comment->update(["comment_text" => $validatedData["comment"]]);
