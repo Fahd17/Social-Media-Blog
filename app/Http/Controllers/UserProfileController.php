@@ -114,7 +114,9 @@ class UserProfileController extends Controller
     {
         $user_profile = UserProfile::findOrFail($id);
         $validatedData = $request->validate([
-            "profile_name" => "required|max:20|unique:user_profiles|regex:/(^[a-zA-Z]+[a-zA-Z0-9\\-]*$)/u",
+            "profile_name" => "required|max:20|
+            unique:user_profiles|
+            regex:/(^[a-zA-Z]+[a-zA-Z0-9\\-]*$)/u",
             "bio" => "required|max:255",
         ]);
         $image_name = auth()->user()->id. date("Y-m-d") .date("h:i:sa");
