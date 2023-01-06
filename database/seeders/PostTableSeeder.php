@@ -17,7 +17,7 @@ class PostTableSeeder extends Seeder
     {
         //hard coding a post for testing
         $p = new Post;
-        $p->image = "image";
+        $p->image = "https://via.placeholder.com/620x480.png/005566?text=nemo";
         $p->caption = "My pic";
         $p->user_profile_id = 1;
         $p->save();

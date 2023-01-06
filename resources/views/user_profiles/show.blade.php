@@ -23,7 +23,7 @@
         </body>       
     </div>
     <h2>
-        Your posts:
+        Posts:
     </h2>
     @foreach ($posts as $post)
         <div>
@@ -35,12 +35,12 @@
         </div>
     @endforeach
     <h2>
-        Your comments:
+        Comments:
     </h2>
     @foreach ($comments as $comment)
         <div>
             <p>
-                You commented:
+                Commented:
             </p>
             {{$comment->comment_text}}
             <p>
