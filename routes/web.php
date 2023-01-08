@@ -5,6 +5,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReceivedLikeController;
+use App\Http\Jokes;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,12 @@ use App\Http\Controllers\ReceivedLikeController;
 | contains the "web" middleware gro;;vlassup. Now create something great!
 |
 */
+
+app()->singleton("App\Http\Jokes", function ($app){
+     return new Jokes("lZ+CtLk3jtLsFyhovM13gw==Mw1J4mJBv83byiNf",
+      "https://api.api-ninjas.com/v1/jokes?limit=1");
+});
+
 Route::get('/user_profiles', [UserProfileController::class, "index"])
      ->middleware(['auth', 'verified'])->name('user_profiles.index');
 

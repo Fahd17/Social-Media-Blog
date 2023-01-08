@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\UserProfile;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Http\Jokes;
 
 class UserProfileController extends Controller
 {
@@ -14,11 +15,15 @@ class UserProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Jokes $jokes)
     {
         $userProfiles = UserProfile::get();
-        
-        return view("user_profiles.index", ["userProfiles" => $userProfiles]);
+
+        //extracting the joke string from the json
+        $joke = $jokes->getJokes()[0]['joke'];
+
+        return view("user_profiles.index", 
+        ["userProfiles" => $userProfiles, "joke" => $joke]);
 
     }
 

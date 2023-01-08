@@ -5,7 +5,12 @@
 @section("content")
 
 <div>
-   
+    <h2>
+        <p>
+            This is a joke for you:
+        </p>
+        {{$joke}}
+    </h2>
         @foreach ($userProfiles as $userProfile)
          
                 <div>
