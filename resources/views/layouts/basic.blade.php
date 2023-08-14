@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <nav>
-    <a href= "{{route("user_profiles.show", ["id" =>  auth()->user()->UserProfile->id])}}">
-        <button>My profile</button>
+    @if (auth()->user()->UserProfile != null)
+        <a href= "{{route("user_profiles.show", ["id" =>  auth()->user()->UserProfile->id])}}">
+            <button>My profile</button>
+        </a>
+    @else
+        <a href= "{{route("user_profiles.create")}}">
+            <button>Create profile</button>
     </a>
+    @endif
     <a href= "{{route("posts.index")}}">
         <button>Explorer</button>
     </a>
