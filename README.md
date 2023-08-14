@@ -1,4 +1,4 @@
-<h1>Social Media Blog Web Application Readme</h1>
+<h1>Social Media Blog Web Application</h1>
 <p>Welcome to the documentation for the Social Media Blog web application developed between September 2022 and January 2023. This project utilized PHP, Laravel, Laravel Livewire, AJAX, MySQL, Docker, and followed the MVC architecture.</p>
 <h2>Project Overview</h2>
 <p>The Social Media Blog primarily focuses on backend functionality, demonstrating user interactions, content management, and notifications. The backend, powered by Laravel and other technologies, enables users to submit posts, comment on posts, manage profiles, and engage with content. A simple user interface showcases the underlying mechanics, providing insights into application functions.</p>
